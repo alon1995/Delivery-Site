@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+  <h1>Delivery Confirmation</h1>
+<form method="post">
+  {% csrf_token %}
+  <table>
+    <thead>
+      <tr>
+          <th>Delivery ID</th>
+          <th>Address</th>
+          <th>Comment</th>
+          <th>Created</th>
+          <th>Delivered</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for delivery in deliveries %}
+          <tr>
+              <td>{{ delivery.cart_id }}</td>
+              <td>{{ delivery.adress }}</td>
+              <td>{{ delivery.comment }}</td>
+              <td>{{ delivery.created }}</td>
+              <td>
+                  <p>
+                      <label>
+                          <input type="checkbox" name="deliveries" value="{{ delivery.cart_id }}" {% if delivery.is_delivered %}checked{% endif %} class="filled-in"/>
+                          <span>Delivered</span>
+                      </label>
+                  </p>
+              </td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <input type="submit" value="Confirm Delivery">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h4>Log in</h4>
+<hr>
+<form action="{% url 'login' %}" method="POST">
+    {%csrf_token%}
+    <div class="input-field">
+        <input type="text" name="username" placeholder="Username"/>
+    </div>
+    <div class="input-field">
+        <input type="password" name="password" placeholder="Password"/>
+    </div>
+    
+    <button type="submit">Login</button>
+</form>
+
+{% endblock content %}

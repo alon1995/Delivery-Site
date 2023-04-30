@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<form action="{% url 'add-dish' %}" method="POST">
+    {% csrf_token %}
+    <div style="margin-top: 5px;">
+      <select class="browser-default" name="category_id">
+        <option value="" disabled selected>Choose Category</option>
+        {%for category  in categorys %}
+          <option value="{{category.id}}">{{category.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="row">
+      <div class="input-field">
+        <input type="text" placeholder="Dish Name" name="name">
+    </div>
+    <div class="input-field">
+        <input type="text" placeholder="Image Url" name="imageUrl">
+    </div>
+    <div class="input-field">
+        <textarea class="materialize-textarea" placeholder="description" name="description"></textarea>
+    </div>
+    <div class="input-field">
+        <input type="text" placeholder="Price" name="price">
+    </div>
+    <p>
+        <label>
+          <input type="checkbox" class="filled-in" name="vegeterian"/>
+          <span>is_vegeterian</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input type="checkbox" class="filled-in" name="gluten"/>
+          <span>Is_gluten_free</span>
+        </label>
+      </p>
+    <button class="waves-effect waves-light btn">Create</button>
+</form>
+
+{% endblock content %}

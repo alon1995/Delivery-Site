@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h3>Best Restaurant categorys</h3>
+<hr>
+
+{%if request.user.username%}
+    <h4>Hello {{ request.user.username }}!</h4>
+{% endif %}
+
+<div class="mycontainer">
+    {% for category in categorys %}
+        <div class="card" style="width: 350px; margin: 15px;">
+            <div class="card-image">
+                <img src="{{category.imageUrl}}" style="height: 300px;">
+            </div>
+            <h5>{{category.name | title}}</h5>
+            <div>
+                <a href="{% url 'one-category' id=category.id %}" class="waves-effect waves-light btn-small">To {{category.name}} Dishes</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

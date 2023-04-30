@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h3>{{category.name}} dishes</h3>
+<hr>
+
+<a href="{% url 'all-categories' %}" class="waves-effect waves-light btn-small">Return To Categories</a>
+
+<div class="mycontainer">
+  {% for dish in category.dish_set.all %}
+    <div class="card" style="width: 350px; margin: 15px;">
+      <div class="card-image">
+        <img src="{{dish.imageUrl}}" style="height: 320px;">
+      </div>
+      <div class="card-content">
+        <h5>{{dish.name | title}}</h5>
+        <hr>
+        <h6>Dish description: {{dish.description}}</h6>
+        {% if dish.is_vegeterian %}
+          <h6>Vegeterian: Yes</h6>
+        {% else %}
+          <h6>Vegeterian: No</h6>
+        {% endif %}
+        {% if dish.is_gluten_free %}
+          <h6>Gluten free: Yes</h6>
+        {% else %}
+          <h6>Gluten free: No</h6>
+        {% endif %}
+        <h6>The price is: ${{dish.price}}</h6>
+        <a href="{% url 'add-to-cart' dish.id %}" class="waves-effect waves-light btn-small light-green">Add to cart</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+{% endblock content %}

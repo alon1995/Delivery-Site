@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h5>Are you sure that you want to delete {{category.name}} category?</h5>
+<form action="{% url 'delete-category' id=category.id %}" method="POST">
+    {% csrf_token %}
+<button type="submit" class="btn waves-effect waves-light green">YES</button>
+<a href="{% url 'manage-categories' %}"  class="btn waves-effect waves-light red">NO</a>
+
+{% endblock content %}

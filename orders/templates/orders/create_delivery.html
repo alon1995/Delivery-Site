@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<form method="post" action="{% url 'create-delivery' %}">
+    {% csrf_token %}
+    <label for="adress">Address:</label>
+    <input type="text" name="adress" required>
+    <br>
+    <label for="comment">Comment:</label>
+    <textarea name="comment"></textarea>
+    <br>
+    <input type="submit" value="Create Delivery">
+</form>
+
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h1>Order History</h1>
+<hr>
+<ul>
+  {% for delivery in deliveries reversed %}
+    <li>Delivery id: {{ delivery.pk }}</li>
+    <li>Date: {{ delivery.created | date:"d/m/Y H:i" }}</li>
+    <li>address: {{ delivery.adress }}</li>
+    <li>comment: {{ delivery.comment }}</li>
+    <hr>
+  {% empty %}
+    <li>No orders found.</li>
+  {% endfor %}
+</ul>
+
+{% endblock content %}

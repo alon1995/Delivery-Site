@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h5>Are you sure that you want to delete {{dish.name}} dish?</h5>
+<form action="{% url 'delete-dish' id=dish.id %}" method="POST">
+    {% csrf_token %}
+<button type="submit" class="btn waves-effect waves-light green">YES</button>
+<a href="{% url 'manage-dishs' id=dish.category.id %}"  class="btn waves-effect waves-light red">NO</a>
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h4>Edit {{category.name}} category</h4>
+<form action="{% url 'edit-category' id=category.id %}" method="POST">
+    {% csrf_token %}
+    <div class="input-field">
+        <input placeholder="Name" type="text" name="name" value="{{category.name}}">
+    </div>
+    <div class="input-field">
+        <input placeholder="Image Url" type="text" name="imageUrl" value="{{category.imageUrl}}">
+    </div>
+    <button class="waves-effect waves-light btn" type="submit">Edit</button>
+</form>
+
+{% endblock content %}

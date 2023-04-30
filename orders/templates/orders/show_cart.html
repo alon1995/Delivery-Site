@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<h2>My Cart</h2>
+<hr>
+{% if latest_delivery.is_delivered == True or latest_delivery.is_delivered is None %}
+  {% if cart_items %}
+    <h3>Items in the cart: {{ cart_amount }}</h3>
+
+    <ul>
+      {% for item in cart_items %}
+        <li style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+          <h4 style="margin-right: 10px;">{{item.dish.name}}: {{ item.amount }}</h4>
+          <div style="display: flex; align-items: center;">
+            <form action="{% url 'delete-from-cart' item.id %}" method="post" style="margin-right: 10px;">
+              {% csrf_token %}
+              <button type="submit" class="waves-effect waves-light btn-small">Delete</button>
+            </form>
+            <form action="{% url 'reduce-item-quantity' item.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="waves-effect waves-light btn-small">Remove One</button>
+            </form>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+    <h4>Your cart is empty.</h4>
+  {% endif %}
+  <h5>Total price: ${{ total_price }}</h5>
+
+  {% if cart_amount > 0 %}
+    <a href="{% url 'create-delivery' %}" class="waves-effect waves-light btn-large">Make an order</a>
+  {% else %}
+    <a href="{% url 'all-categories' %}" class="waves-effect waves-light btn-large">Add a dish</a>
+  {% endif %}
+{% else %}
+<h4>Hello {{user.username}}, thank you for ordering from Best Restaurant!</h4>
+<h5>We are currently going through your order, and you will soon be able to place orders again.</h5>
+{% endif %}
+
+
+
+{% endblock content %}

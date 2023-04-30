@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h3>Manage {{category.name}} Dishs</h3>
+<hr style="border: none; border-top: 1px solid black;">
+
+<a href="{% url 'add-dish' %}" class="btn waves-effect waves-light green light-green">Create New Dish</a>
+
+<div class="mycontainer">
+    {% for dish in category.dish_set.all %}
+            <div class="card" style="width: 350px; margin: 15px;">
+                <div class="card-image">
+                    <img src="{{dish.imageUrl}}" style="height: 300px;">
+                </div>
+                <h5>
+                    {{dish.name}}
+                </h5>
+                <div>
+                    <a href="{% url 'delete-dish' id=dish.id %}" class="btn waves-effect waves-light red">Delete</a>
+                    <a href="{% url 'edit-dish' id=dish.id %}" class="btn waves-effect waves-light blue">Edit</a>
+                </div>
+            </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

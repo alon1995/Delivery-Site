@@ -1,0 +1,20 @@
+<nav class="indigo">
+    <div class="nav-wrapper">
+      <a href="{% url 'all-categories' %}" class="brand-logo">Best Restaurant</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {% if not request.user.username %}
+          <li><a href="{% url 'signup' %}">Sign up</a></li>
+          <li><a href="{% url 'login' %}">Log in</a></li>
+        {% endif %}
+        {% if request.user.username %}
+          <li><a href="{% url 'logout' %}">Log out</a></li>
+          <li><a href="{% url 'show-cart' %}">My Cart <span class="new badge">{{cart_amount}}</span></a></li>
+          <li><a href="{% url 'orders-history' %}">Orders history</a></li>
+          <li><a href="{% url 'update-user' user.id %}">Update details</a></li>
+        {% endif %}
+        {% if request.user.is_superuser %}
+          <li><a href="{% url 'manage-categories' %}">Manage Site</a></li>
+        {% endif %}
+      </ul>
+    </div>
+</nav>

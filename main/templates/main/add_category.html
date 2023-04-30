@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h5>Add new category</h5>
+<form action="{% url 'add-category' %}" method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="input-field">
+            <input placeholder="Category Name" type="text" name="name">
+        </div>
+        <div class="input-field">
+            <input placeholder="Image Url" type="text" name="imageUrl">
+        </div>
+    </div>
+    <button class="waves-effect waves-light btn">Add Category</button>
+</form>
+
+{% endblock content %}

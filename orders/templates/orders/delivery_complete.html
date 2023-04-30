@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<h1>The order was successfully placed.</h1>
+<h3>Delivery details:</h3>
+<hr>
+<div>
+    <div> 
+        <h4>Delivery id: {{ delivery.pk }}</h4>
+        <h4>was created at: {{ delivery.created | date:"d/m/Y H:i" }}</h4>
+        <h4>Total order price: ${{total_price}}</h4>
+        <h5>Delivery address: {{ delivery.adress }}</h5>
+        <h5>Delivery comment: {{ delivery.comment }}</h5>
+    </div>
+</div>
+
+
+{% endblock content %}

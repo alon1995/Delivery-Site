@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<h3>Manage Categorys</h3>
+<hr style="border: none; border-top: 1px solid black;">
+
+<a href="{% url 'add-category' %}" class="btn waves-effect waves-light light-green">Create New Category</a>
+<a href="{% url 'delivery-confirm' %}" class="btn waves-effect waves-light purple">Deliveries confirmation</a>
+
+
+<div class="mycontainer">
+    {% for category in categorys %}
+        <div class="card" style="width: 350px; margin: 15px;">
+            <div class="card-image">
+                <img src="{{category.imageUrl}}" style="height: 300px;">
+            </div>
+            <h5>{{category.name | title}}</h5>
+            <div>
+                <a href="{% url 'delete-category' id=category.id %}" class="btn waves-effect waves-light red lighten-1">Delete</a>
+                <a href="{% url 'edit-category' id=category.id %}" class="btn waves-effect waves-light blue lighten-1">Edit</a>
+            <div>
+                <a href="{% url 'manage-dishs' id=category.id %}" class="btn waves-effect waves-light teal lighten-2">Manage {{category.name}} Dishes</a>
+            </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
