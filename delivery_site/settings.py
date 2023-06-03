@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&ps=)hx^iw(9a42^mn7tjg33gr68rqmwt6_z#r*+lcl8aj6zc5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['delivrysite.blacktree-6e79657f.germanywestcentral.azurecontainerapps.io','localhost','127.0.0.1']
 
 
 # Application definition
@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'user',
     'main',
     'orders'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://delivrysite.blacktree-6e79657f.germanywestcentral.azurecontainerapps.io'
 ]
 
 MIDDLEWARE = [
@@ -80,8 +84,12 @@ WSGI_APPLICATION = 'delivery_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'alon',
+        'PASSWORD':'Aa102060',
+        'HOST': 'alondb-python.postgres.database.azure.com',
+        'PORT': ''
     }
 }
 
